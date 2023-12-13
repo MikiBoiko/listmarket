@@ -1,26 +1,10 @@
 import { IonButton, IonButtons, IonIcon, IonItem, IonLabel, IonPopover } from "@ionic/react"
-import type { Product, ProductCategory } from "../../context/appContext"
-import { leafOutline, fishOutline, ellipsisVertical } from "ionicons/icons"
-import grocery from "../../svg/grocery.svg"
-import fruit from "../../svg/fruit.svg"
-import household from "../../svg/household.svg"
-import wc from "../../svg/wc.svg"
+import type { Product } from "../../context/appContext"
+import { ellipsisVertical, createOutline, trashOutline } from "ionicons/icons"
+import productIcons from "../Misc"
 
 type ProductProps = {
     product: Product
-}
-
-type CategoryIconMap = {
-    [K in ProductCategory]: string
-}
-
-const productIcons: CategoryIconMap = {
-    grocery,
-    fish: fishOutline,
-    fruit,
-    veggies: leafOutline,
-    hygienic: wc,
-    household
 }
 
 const ProductElement: React.FC<ProductProps> = ({ product }: ProductProps) => {
@@ -37,8 +21,15 @@ const ProductElement: React.FC<ProductProps> = ({ product }: ProductProps) => {
                     <IonButton id={popoverId} shape="round">
                         <IonIcon icon={ ellipsisVertical } />
                     </IonButton>
-                    <IonPopover trigger={popoverId}>
-                        <IonItem>Hola machete</IonItem>
+                    <IonPopover className="ion-no-padding" trigger={popoverId}>
+                        <IonItem>
+                            <IonIcon slot="start" icon={createOutline} />
+                            <IonLabel>Edit</IonLabel>
+                        </IonItem>
+                        <IonItem>
+                            <IonIcon color="danger" slot="start" icon={trashOutline} />
+                            <IonLabel color="danger">Remove</IonLabel>
+                        </IonItem>
                     </IonPopover>
                 </IonButtons>
             </IonButtons>

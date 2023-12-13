@@ -3,6 +3,7 @@ import { caretBackOutline, cartOutline, chatbubbleOutline, peopleOutline, listOu
 import { Route } from "react-router"
 import ShoppingList from "./list/ShoppingList"
 import Chat from "./list/Chat"
+import ShoppingModal from "../components/modals/ShoppingModal"
 
 const List: React.FC = () => {
     return (
@@ -29,11 +30,14 @@ const List: React.FC = () => {
             <IonTabBar>
                 <IonTabButton tab="list" href="/list/products">
                     <IonIcon icon={listOutline} />
-                    <IonLabel>Shopping List</IonLabel>
+                    <IonLabel>List</IonLabel>
                 </IonTabButton>
-                <IonTabButton style={{color: "white", background: "var(--ion-color-primary)", fontWeight: "bold", borderRadius: "20rem"}}>
-                    <IonIcon icon={cartOutline} />
-                    <IonLabel>Start Shopping</IonLabel>
+                <IonTabButton>
+                    <IonButton shape="round" color="tertiary" fill="outline" id="start-shopping">
+                        <IonIcon icon={cartOutline} />
+                        <IonLabel>Start Shopping</IonLabel>
+                    </IonButton>
+                    <ShoppingModal trigger="start-shopping" />
                 </IonTabButton>
                 <IonTabButton tab="chat" href="/list/chat">
                     <IonIcon icon={chatbubbleOutline} />

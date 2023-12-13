@@ -22,7 +22,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 
 import React, { Suspense, useState } from 'react';
-import appContext, { Profile, List as ListType, ListState } from './context/appContext';
+import appContext, { Profile, List as ListType, ListState, ChatEvent } from './context/appContext';
 import List from './pages/List';
 
 setupIonicReact();
@@ -70,6 +70,123 @@ const App: React.FC = () => {
       },
     ]
   })
+  const [currentChatState, setCurrentChatState] = useState<ChatEvent[]>([
+    {
+      type: "message",
+      sender: { name: "dad" },
+      data: {
+        message: "hey, i am going to shop later"
+      }
+    },
+    {
+      type: "message",
+      sender: { name: "mom" },
+      data: {
+        message: "ok"
+      }
+    },
+    {
+      type: "message",
+      sender: { name: "you" },
+      data: {
+        message: "buy bread"
+      }
+    },
+    {
+      type: "missing",
+      sender: { name: "sister" },
+      data: {
+        product: {
+          id: 'asdasdas',
+          name: 'Milk',
+          category: "grocery"
+        }
+      }
+    },
+    {
+      type: "missing",
+      sender: { name: "you" },
+      data: {
+        product: {
+          id: 'asdaadas',
+          name: 'Tabaco',
+          category: "grocery"
+        }
+      }
+    },
+    {
+      type: "shop",
+      sender: { name: "you" },
+      data: {
+        products: [
+          {
+            id: 'asdaadas',
+            name: 'Tabaco',
+            category: "grocery"
+          },
+          {
+            id: 'asdasdas',
+            name: 'Milk',
+            category: "grocery"
+          }
+        ]
+      }
+    },
+    {
+      type: "shop",
+      sender: { name: "you" },
+      data: {
+        products: [
+          {
+            id: 'asdaadas',
+            name: 'Tabaco',
+            category: "grocery"
+          },
+          {
+            id: 'asdasdas',
+            name: 'Milk',
+            category: "grocery"
+          }
+        ]
+      }
+    },
+    {
+      type: "shop",
+      sender: { name: "you" },
+      data: {
+        products: [
+          {
+            id: 'asdaadas',
+            name: 'Tabaco',
+            category: "grocery"
+          },
+          {
+            id: 'asdasdas',
+            name: 'Milk',
+            category: "grocery"
+          }
+        ]
+      }
+    },
+    {
+      type: "shop",
+      sender: { name: "brother" },
+      data: {
+        products: [
+          {
+            id: 'asdaadas',
+            name: 'Tabaco',
+            category: "grocery"
+          },
+          {
+            id: 'asdasdas',
+            name: 'Milk',
+            category: "grocery"
+          }
+        ]
+      }
+    },
+  ])
 
   const loadingPage = (
     <IonHeader>
@@ -85,7 +202,8 @@ const App: React.FC = () => {
       value={{
         profile,
         lists,
-        currentListState
+        currentListState,
+        currentChatState
       }}
     >
       <IonApp>
